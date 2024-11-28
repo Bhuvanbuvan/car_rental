@@ -7,13 +7,13 @@ class Onbording extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2C2B34),
+      backgroundColor: const Color(0xff2C2B34),
       body: Column(
         children: [
           Expanded(
             flex: 2,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/onboarding.png'),
                   fit: BoxFit.cover,
@@ -27,7 +27,7 @@ class Onbording extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Premium Cars \nEnjoy the Luxury.",
                     style: TextStyle(
                       color: Colors.white,
@@ -35,17 +35,17 @@ class Onbording extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "Premium and prestige car daily. \nExperience the thirll at a lower price",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   SizedBox(
@@ -63,8 +63,8 @@ class Onbording extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                       ),
-                      child: Text(
-                        "Let\'s Go ",
+                      child: const Text(
+                        "Let's Go ",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

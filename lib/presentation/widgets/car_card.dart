@@ -1,3 +1,4 @@
+import 'package:car_rental/presentation/pages/car_detials_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/car.dart';
@@ -10,9 +11,18 @@ class CarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CarDetialsPage(
+              car: car,
+            ),
+          ),
+        );
+      },
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Color(0xffF3F3F3),
             borderRadius: BorderRadius.all(
               Radius.circular(20),
@@ -24,11 +34,11 @@ class CarCard extends StatelessWidget {
                 spreadRadius: 5,
               )
             ]),
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: 10,
           horizontal: 20,
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Image.asset(
@@ -37,12 +47,12 @@ class CarCard extends StatelessWidget {
             ),
             Text(
               car.model,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -66,7 +76,7 @@ class CarCard extends StatelessWidget {
                 ),
                 Text(
                   "\$${car.pricePerHour.toStringAsFixed(2)}/h",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 )

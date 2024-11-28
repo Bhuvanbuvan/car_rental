@@ -11,30 +11,32 @@ class CarListScreen extends StatelessWidget {
       pricePerHour: 45,
     ),
     Car(
-      model: "Fortunre",
+      model: "Benz",
       distance: 870,
       fuelCapacity: 50,
       pricePerHour: 45,
     ),
     Car(
-      model: "Fortunre",
+      model: "Jaguar",
       distance: 870,
       fuelCapacity: 50,
       pricePerHour: 45,
     ),
     Car(
-      model: "Fortunre",
+      model: "BMW",
       distance: 870,
       fuelCapacity: 50,
       pricePerHour: 45,
     ),
     Car(
-      model: "Fortunre",
+      model: "Toyota",
       distance: 870,
       fuelCapacity: 50,
       pricePerHour: 45,
     ),
   ];
+
+  CarListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class CarListScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: Text("Choose Your Car"),
+        title: const Text("Choose Your Car"),
       ),
       body: ListView.builder(
         itemCount: cars.length,
