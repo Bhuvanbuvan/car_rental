@@ -4,9 +4,47 @@ import 'package:car_rental/presentation/widgets/car_card.dart';
 import 'package:car_rental/presentation/widgets/more_car.dart';
 import 'package:flutter/material.dart';
 
-class CarDetialsPage extends StatelessWidget {
+class CarDetialsPage extends StatefulWidget {
   final Car car;
   const CarDetialsPage({super.key, required this.car});
+
+  @override
+  State<CarDetialsPage> createState() => _CarDetialsPageState();
+}
+
+class _CarDetialsPageState extends State<CarDetialsPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _animationController;
+  Animation<double>? _animation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 9),
+      vsync: this,
+    );
+
+    _animation = Tween<double>(
+      begin: 1.0,
+      end: 1.5,
+    ).animate(_animationController!)
+      ..addListener(() => {setState(() {})});
+    _animationController!.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _animationController!.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _animationController!.forward();
+      }
+    });
+    _animationController!.forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +64,10 @@ class CarDetialsPage extends StatelessWidget {
           children: [
             CarCard(
               car: Car(
-                model: car.model,
-                distance: car.distance,
-                fuelCapacity: car.fuelCapacity,
-                pricePerHour: car.pricePerHour,
+                model: widget.car.model,
+                distance: widget.car.distance,
+                fuelCapacity: widget.car.fuelCapacity,
+                pricePerHour: widget.car.pricePerHour,
               ),
             ),
             const SizedBox(
@@ -90,7 +128,9 @@ class CarDetialsPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MapDetials(),
+                            builder: (context) => MapDetials(
+                              car: widget.car,
+                            ),
                           ),
                         );
                       },
@@ -98,10 +138,6 @@ class CarDetialsPage extends StatelessWidget {
                         height: 170,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage('assets/maps.png'),
-                              fit: BoxFit.cover,
-                            ),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black12,
@@ -109,6 +145,17 @@ class CarDetialsPage extends StatelessWidget {
                                 spreadRadius: 5,
                               ),
                             ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Transform.scale(
+                            scale: _animation!.value,
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              'assets/maps.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -126,10 +173,10 @@ class CarDetialsPage extends StatelessWidget {
                 children: [
                   MoreCar(
                     car: Car(
-                      model: car.model + " -1",
-                      distance: car.distance + 100,
-                      fuelCapacity: car.fuelCapacity + 100,
-                      pricePerHour: car.pricePerHour + 10,
+                      model: widget.car.model + " -1",
+                      distance: widget.car.distance + 100,
+                      fuelCapacity: widget.car.fuelCapacity + 100,
+                      pricePerHour: widget.car.pricePerHour + 10,
                     ),
                   ),
                   SizedBox(
@@ -137,10 +184,10 @@ class CarDetialsPage extends StatelessWidget {
                   ),
                   MoreCar(
                     car: Car(
-                      model: car.model + " -2",
-                      distance: car.distance + 200,
-                      fuelCapacity: car.fuelCapacity + 200,
-                      pricePerHour: car.pricePerHour + 20,
+                      model: widget.car.model + " -2",
+                      distance: widget.car.distance + 200,
+                      fuelCapacity: widget.car.fuelCapacity + 200,
+                      pricePerHour: widget.car.pricePerHour + 20,
                     ),
                   ),
                   SizedBox(
@@ -148,10 +195,10 @@ class CarDetialsPage extends StatelessWidget {
                   ),
                   MoreCar(
                     car: Car(
-                      model: car.model + " -3",
-                      distance: car.distance + 300,
-                      fuelCapacity: car.fuelCapacity + 300,
-                      pricePerHour: car.pricePerHour + 30,
+                      model: widget.car.model + " -3",
+                      distance: widget.car.distance + 300,
+                      fuelCapacity: widget.car.fuelCapacity + 300,
+                      pricePerHour: widget.car.pricePerHour + 30,
                     ),
                   ),
                   SizedBox(
@@ -159,10 +206,10 @@ class CarDetialsPage extends StatelessWidget {
                   ),
                   MoreCar(
                     car: Car(
-                      model: car.model + " -4",
-                      distance: car.distance + 400,
-                      fuelCapacity: car.fuelCapacity + 400,
-                      pricePerHour: car.pricePerHour + 40,
+                      model: widget.car.model + " -4",
+                      distance: widget.car.distance + 400,
+                      fuelCapacity: widget.car.fuelCapacity + 400,
+                      pricePerHour: widget.car.pricePerHour + 40,
                     ),
                   ),
                 ],

@@ -1,9 +1,14 @@
+import 'package:car_rental/data/model/car.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapDetials extends StatelessWidget {
-  const MapDetials({super.key});
+  final Car car;
+  const MapDetials({
+    super.key,
+    required this.car,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,9 @@ class MapDetials extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: CarDetialsCard(),
+            child: CarDetialsCard(
+              car: car,
+            ),
           )
         ],
       ),
@@ -40,8 +47,10 @@ class MapDetials extends StatelessWidget {
 }
 
 class CarDetialsCard extends StatelessWidget {
+  final Car car;
   const CarDetialsCard({
     super.key,
+    required this.car,
   });
 
   @override
@@ -98,7 +107,7 @@ class CarDetialsCard extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      "> Car Distance Km",
+                      "> ${car.distance} Km",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -117,7 +126,7 @@ class CarDetialsCard extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      "> Car FuelCapacity ",
+                      "> ${car.fuelCapacity} ",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -157,9 +166,10 @@ class CarDetialsCard extends StatelessWidget {
                     height: 20,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$ Car.PricePerDay",
+                        "\$ ${car.pricePerHour}",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -181,6 +191,13 @@ class CarDetialsCard extends StatelessWidget {
                   )
                 ],
               ),
+            ),
+          ),
+          Positioned(
+            top: 50,
+            right: 20,
+            child: Image.asset(
+              'assets/white_car.png',
             ),
           )
         ],
