@@ -8,11 +8,11 @@ class MoreCar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: Colors.black87,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
                 color: Colors.black54, blurRadius: 8, offset: Offset(0, 4))
           ]),
@@ -24,46 +24,46 @@ class MoreCar extends StatelessWidget {
             children: [
               Text(
                 car.model,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.directions_car,
                     color: Colors.white,
                     size: 16,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
                     "> ${car.distance}Km",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.battery_full,
                     color: Colors.white,
                     size: 16,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Text(
                     car.fuelCapacity.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                     ),
@@ -72,7 +72,7 @@ class MoreCar extends StatelessWidget {
               )
             ],
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios,
             color: Colors.white,
             size: 24,

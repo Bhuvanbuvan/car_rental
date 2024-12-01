@@ -5,7 +5,7 @@ import 'package:car_rental/domain/repository/car_repository.dart';
 class CarRepositoryImpl implements CarRepository {
   final FirebaseCarDatasource datasource;
 
-  CarRepositoryImpl({required this.datasource});
+  CarRepositoryImpl(this.datasource);
   @override
   Future<List<Car>> fetchCard() {
     return datasource.getCars();

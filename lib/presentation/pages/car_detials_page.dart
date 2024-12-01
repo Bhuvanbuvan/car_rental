@@ -28,7 +28,9 @@ class _CarDetialsPageState extends State<CarDetialsPage>
       begin: 1.0,
       end: 1.5,
     ).animate(_animationController!)
-      ..addListener(() => {setState(() {})});
+      ..addListener(() {
+        setState(() {});
+      });
     _animationController!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _animationController!.reverse();
@@ -81,20 +83,20 @@ class _CarDetialsPageState extends State<CarDetialsPage>
                 children: [
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          color: Color(0xFFF3F3F3),
+                          color: const Color(0xFFF3F3F3),
                           borderRadius: BorderRadius.circular(
                             20,
                           ),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.black12,
                               blurRadius: 10,
                               spreadRadius: 5,
                             ),
                           ]),
-                      child: Column(
+                      child: const Column(
                         children: [
                           CircleAvatar(
                             radius: 40,
@@ -119,7 +121,7 @@ class _CarDetialsPageState extends State<CarDetialsPage>
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -138,7 +140,7 @@ class _CarDetialsPageState extends State<CarDetialsPage>
                         height: 170,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
                                 blurRadius: 10,
@@ -162,51 +164,51 @@ class _CarDetialsPageState extends State<CarDetialsPage>
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.all(
+              padding: const EdgeInsets.all(
                 20,
               ),
               child: Column(
                 children: [
                   MoreCar(
                     car: Car(
-                      model: widget.car.model + " -1",
+                      model: "${widget.car.model} -1",
                       distance: widget.car.distance + 100,
                       fuelCapacity: widget.car.fuelCapacity + 100,
                       pricePerHour: widget.car.pricePerHour + 10,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   MoreCar(
                     car: Car(
-                      model: widget.car.model + " -2",
+                      model: "${widget.car.model} -2",
                       distance: widget.car.distance + 200,
                       fuelCapacity: widget.car.fuelCapacity + 200,
                       pricePerHour: widget.car.pricePerHour + 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   MoreCar(
                     car: Car(
-                      model: widget.car.model + " -3",
+                      model: "${widget.car.model} -3",
                       distance: widget.car.distance + 300,
                       fuelCapacity: widget.car.fuelCapacity + 300,
                       pricePerHour: widget.car.pricePerHour + 30,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   MoreCar(
                     car: Car(
-                      model: widget.car.model + " -4",
+                      model: "${widget.car.model} -4",
                       distance: widget.car.distance + 400,
                       fuelCapacity: widget.car.fuelCapacity + 400,
                       pricePerHour: widget.car.pricePerHour + 40,

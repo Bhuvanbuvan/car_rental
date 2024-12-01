@@ -20,7 +20,7 @@ class MapDetials extends StatelessWidget {
       body: Stack(
         children: [
           FlutterMap(
-            options: MapOptions(
+            options: const MapOptions(
               initialCenter: LatLng(13.0843, 80.2705),
               initialZoom: 13,
             ),
@@ -28,7 +28,7 @@ class MapDetials extends StatelessWidget {
               TileLayer(
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                subdomains: ['a', 'b', 'c'],
+                subdomains: const ['a', 'b', 'c'],
               )
             ],
           ),
@@ -60,12 +60,12 @@ class CarDetialsCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 10,
             ),
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.black54,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
@@ -82,10 +82,10 @@ class CarDetialsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Car Model",
                   style: TextStyle(
                     color: Colors.white,
@@ -93,41 +93,41 @@ class CarDetialsCard extends StatelessWidget {
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.directions_car,
                       size: 16,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
                       "> ${car.distance} Km",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.battery_full,
                       size: 16,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
                       "> ${car.fuelCapacity} ",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -143,8 +143,8 @@ class CarDetialsCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
@@ -154,7 +154,7 @@ class CarDetialsCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Features",
                     style: TextStyle(
                       fontSize: 24,
@@ -162,7 +162,7 @@ class CarDetialsCard extends StatelessWidget {
                     ),
                   ),
                   featureIcons(),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
@@ -170,7 +170,7 @@ class CarDetialsCard extends StatelessWidget {
                     children: [
                       Text(
                         "\$ ${car.pricePerHour}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
@@ -180,7 +180,7 @@ class CarDetialsCard extends StatelessWidget {
                           backgroundColor: Colors.black,
                         ),
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "Book Now",
                           style: TextStyle(
                             color: Colors.white,
@@ -236,7 +236,7 @@ class CarDetialsCard extends StatelessWidget {
     return Container(
       width: 100,
       height: 100,
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
@@ -253,7 +253,7 @@ class CarDetialsCard extends StatelessWidget {
           Text(title),
           Text(
             subTitle,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontSize: 10,
             ),
