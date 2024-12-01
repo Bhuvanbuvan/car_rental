@@ -1,8 +1,10 @@
 import 'package:car_rental/firebase_options.dart';
 import 'package:car_rental/init_injection.dart';
+import 'package:car_rental/presentation/bloc/car_bloc.dart';
 import 'package:car_rental/presentation/pages/onbording.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,13 +12,21 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await initInjection();
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<CarBloc>()..add(LoadCarEvent()),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -1,42 +1,11 @@
-import 'package:car_rental/data/model/car.dart';
 import 'package:car_rental/presentation/widgets/car_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/car_bloc.dart';
 
 class CarListScreen extends StatelessWidget {
-  final List<Car> cars = [
-    Car(
-      model: "Fortunre",
-      distance: 870,
-      fuelCapacity: 50,
-      pricePerHour: 45,
-    ),
-    Car(
-      model: "Benz",
-      distance: 870,
-      fuelCapacity: 50,
-      pricePerHour: 45,
-    ),
-    Car(
-      model: "Jaguar",
-      distance: 870,
-      fuelCapacity: 50,
-      pricePerHour: 45,
-    ),
-    Car(
-      model: "BMW",
-      distance: 870,
-      fuelCapacity: 50,
-      pricePerHour: 45,
-    ),
-    Car(
-      model: "Toyota",
-      distance: 870,
-      fuelCapacity: 50,
-      pricePerHour: 45,
-    ),
-  ];
-
-  CarListScreen({super.key});
+  const CarListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +16,49 @@ class CarListScreen extends StatelessWidget {
         foregroundColor: Colors.black,
         title: const Text("Choose Your Car"),
       ),
-      body: ListView.builder(
-        itemCount: cars.length,
-        itemBuilder: (context, index) {
-          return CarCard(car: cars[index]);
+      body: BlocBuilder<CarBloc, CarState>(
+        builder: (context, state) {
+          if (state is CarLoading) {
+            print("car loading ");
+
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is CarsLoaded) {
+            print("car loaded ${state.car}");
+            return ListView.builder(
+              itemCount: state.car.length,
+              itemBuilder: (context, index) {
+                return CarCard(car: state.car[index]);
+              },
+            );
+          } else if (state is CarsError) {
+            print("car error ${state.message} ");
+
+            return const Center(
+              child: Text(
+                "Error ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          } else {
+            print("car anythig else");
+
+            return const Center(
+              child: Text(
+                "Anything else ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          }
         },
       ),
     );
