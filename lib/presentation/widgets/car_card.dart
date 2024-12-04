@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../../data/model/car.dart';
 
 class CarCard extends StatelessWidget {
+  final String carImage;
   final Car car;
 
-  const CarCard({super.key, required this.car});
+  const CarCard({super.key, required this.car, required this.carImage});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class CarCard extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => CarDetialsPage(
               car: car,
+              carImageUrl: carImage,
             ),
           ),
         );
@@ -38,12 +40,14 @@ class CarCard extends StatelessWidget {
           vertical: 10,
           horizontal: 20,
         ),
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(
           children: [
             Image.asset(
-              "assets/car_image.png",
-              height: 120,
+              carImage,
+              height: 170,
+              width: 400,
+              fit: BoxFit.cover,
             ),
             Text(
               car.model,

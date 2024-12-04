@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AddData extends StatefulWidget {
   const AddData({super.key});
@@ -70,6 +72,28 @@ class _AddDataState extends State<AddData> {
     }
   }
 
+  Future<void> uploadAssetImage(String assetPath) async {
+    try {
+      // Load the asset as bytes
+      ByteData data = await rootBundle.load(assetPath);
+      Uint8List imageBytes = data.buffer.asUint8List();
+
+      // Upload the bytes to Firebase Storage
+      String storagePath =
+          'images/${DateTime.now().millisecondsSinceEpoch}.jpg';
+      FirebaseStorage storage = FirebaseStorage.instance;
+
+      TaskSnapshot uploadTask =
+          await storage.ref(storagePath).putData(imageBytes);
+
+      // Get the download URL
+      String downloadUrl = await uploadTask.ref.getDownloadURL();
+      print('Image uploaded successfully. Download URL: $downloadUrl');
+    } catch (e) {
+      print('Error uploading asset image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,8 +101,8 @@ class _AddDataState extends State<AddData> {
         child: Text("body"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          addData();
+        onPressed: () async {
+          uploadAssetImage('assets/car_image.png');
         },
         child: const Text("add"),
       ),

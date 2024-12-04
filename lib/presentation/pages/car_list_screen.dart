@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:car_rental/presentation/widgets/car_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,8 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/car_bloc.dart';
 
 class CarListScreen extends StatelessWidget {
-  const CarListScreen({super.key});
-
+  CarListScreen({super.key});
+  List<String> carImage = [
+    'assets/carimages/2.png',
+    'assets/carimages/1.png',
+    'assets/carimages/3.png',
+    'assets/carimages/6.png',
+    'assets/carimages/8.png',
+    'assets/carimages/7.png',
+    'assets/carimages/5.png',
+    'assets/carimages/4.png',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +40,10 @@ class CarListScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: state.car.length,
               itemBuilder: (context, index) {
-                return CarCard(car: state.car[index]);
+                return CarCard(
+                  car: state.car[index],
+                  carImage: carImage[index],
+                );
               },
             );
           } else if (state is CarsError) {

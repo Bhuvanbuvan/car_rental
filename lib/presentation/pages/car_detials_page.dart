@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 class CarDetialsPage extends StatefulWidget {
   final Car car;
-  const CarDetialsPage({super.key, required this.car});
+  final String carImageUrl;
+  const CarDetialsPage(
+      {super.key, required this.car, required this.carImageUrl});
 
   @override
   State<CarDetialsPage> createState() => _CarDetialsPageState();
@@ -71,6 +73,7 @@ class _CarDetialsPageState extends State<CarDetialsPage>
                 fuelCapacity: widget.car.fuelCapacity,
                 pricePerHour: widget.car.pricePerHour,
               ),
+              carImage: widget.carImageUrl,
             ),
             const SizedBox(
               height: 20,
